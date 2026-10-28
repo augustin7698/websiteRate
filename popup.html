@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes de sites</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="shell">
+    <nav class="tabs" role="tablist">
+      <button class="tab is-active" id="tab-current" data-tab="current" role="tab" aria-selected="true">Ce site</button>
+      <button class="tab" id="tab-list" data-tab="list" role="tab" aria-selected="false">
+        Mes sites <span id="count" class="count">0</span>
+      </button>
+    </nav>
+
+    <!-- Onglet : site courant -->
+    <section id="panel-current" class="panel" role="tabpanel">
+      <div id="unsupported" class="empty" hidden>
+        <p class="empty-title">Cette page ne peut pas être notée</p>
+        <p>Ouvrez un site web (http ou https) puis cliquez à nouveau sur l'icône.</p>
+      </div>
+
+      <div id="editor" hidden>
+        <div class="site">
+          <img id="favicon" class="favicon" alt="" width="32" height="32">
+          <div class="site-text">
+            <div id="host" class="host"></div>
+            <div id="hint" class="hint"></div>
+          </div>
+        </div>
+
+        <div class="field-label" id="rating-label">Note</div>
+        <div class="rating-row">
+          <div id="stars" class="stars" role="radiogroup" aria-labelledby="rating-label"></div>
+          <span id="ratingText" class="rating-text"></span>
+        </div>
+
+        <label class="field-label" for="note">Commentaire</label>
+        <textarea id="note" rows="5" maxlength="5000" placeholder="Ce que vous voulez retenir de ce site : fiable, trop de pub, bon pour les tutoriels…"></textarea>
+
+        <div class="actions">
+          <button id="btnDelete" class="btn btn-quiet" type="button" hidden>Supprimer</button>
+          <span id="status" class="status" role="status"></span>
+          <button id="btnSave" class="btn btn-primary" type="button">Enregistrer</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Onglet : liste -->
+    <section id="panel-list" class="panel" role="tabpanel" hidden>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Rechercher un site ou une note" aria-label="Rechercher">
+        <select id="sort" aria-label="Trier">
+          <option value="recent">Récents</option>
+          <option value="rating">Mieux notés</option>
+          <option value="alpha">A → Z</option>
+        </select>
+      </div>
+
+      <ul id="list" class="list"></ul>
+      <div id="emptyList" class="empty" hidden>
+        <p class="empty-title">Aucun site noté</p>
+        <p>Les sites que vous notez apparaissent ici.</p>
+      </div>
+
+      <div class="footer">
+        <button id="btnExport" class="btn btn-quiet" type="button">Exporter</button>
+        <button id="btnImport" class="btn btn-quiet" type="button">Importer</button>
+        <input id="file" type="file" accept="application/json,.json" hidden>
+        <span id="listStatus" class="status" role="status"></span>
+      </div>
+    </section>
+  </div>
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

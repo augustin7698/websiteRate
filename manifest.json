@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Notes de sites",
+  "version": "1.0.0",
+  "description": "Notez les sites web que vous visitez. Votre note s'affiche quand vous y revenez et dans les résultats de recherche.",
+  "permissions": ["storage", "tabs", "favicon"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Noter ce site",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["shared.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
